@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Landing</title>
+</head>
+<body>
+<h1>Welcome</h1>
+<h1 th:text="${username}"></h1>
+<form method="Post" action="/product/add">
+    <input type="text" name="name" placeholder="name"><br>
+    <input type="text" name="amount" placeholder="amount"><br>
+    <input type="text" name="price" placeholder="price (AZN)"><br>
+    <input type="submit" value="add"><a href="/product/products">Show My Products</a><br>
+</form>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+
+<table>
+    <a href="/landing">Back</a>
+    <h3>Your Products</h3>
+    <thead class="thead-inverse">
+    <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Price</th>
+        <th>Remove</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.getName()}"></td>
+        <td th:text="${product.getAmount()}"></td>
+        <td th:text="${product.getPrice()}"></td>
+        <td><a th:href="@{'removeById/'+ ${product.getId()}}">Delete</a></td>
+        <!--            <td th:text="${group.getUsers_g()}">Members</td>-->
+        <!--            <td><a th:href="@{'/join/'+ ${group.getId()}}" style="color: white; text-decoration: none">Join</a></td>-->
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
