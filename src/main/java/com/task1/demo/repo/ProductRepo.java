@@ -1,8 +1,6 @@
 package com.task1.demo.repo;
 
 import com.task1.demo.model.Product;
-import com.task1.demo.model.XUser;
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;

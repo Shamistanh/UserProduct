@@ -4,12 +4,15 @@ package com.task1.demo.service;
 import com.task1.demo.model.Product;
 import com.task1.demo.model.XUser;
 import com.task1.demo.repo.XUserRepo;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
+@Log4j2
 @Service
 public class XUserService {
 
@@ -23,26 +26,25 @@ public class XUserService {
         userRepo.save(user);
     }
 
-    public List<Product> AllProductsOf(XUser user) {
-        return user.getProducts();
-    }
 
-    public boolean validated(String username, String password) {
-        if (userRepo.findByUsername(username).orElseThrow().getPassword().equals(password)) {
-            return true;
-        }
-        return false;
-    }
 
-    public XUser logged_user() {
+    public XUser loggedUser() {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = ((UserDetails) principal).getUsername();
 
-        return userRepo.findByUsername(username).get();
+
+        final Optional<XUser> currentUser = userRepo.findByUsername(username);
+        if (currentUser.isPresent()) {
+            return currentUser.get();
+        } else {
+            log.error("Logged user not found");
+        }
+        return null;
+
     }
 
     public List<Product> getMyProducts() {
-        return logged_user().getProducts();
+        return loggedUser().getProducts();
     }
 }
