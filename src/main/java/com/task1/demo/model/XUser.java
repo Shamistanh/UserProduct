@@ -17,12 +17,12 @@ import java.util.List;
 @Document(collection = "user")
 public class XUser implements Serializable {
     @Id
-    String userId;
+    String userId = Math.random()*50+"";
 
     String name;
     String surname;
     String username;
     String password;
-    String roles;
-    List<Product> products;
+    transient String roles;
+    transient List<Product> products;
 }

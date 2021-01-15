@@ -40,16 +40,11 @@ public class XUserController {
         log.info("GET -> /register");
         return "register";
     }
+
     @PostMapping("register")
-    public String registration(@RequestParam("name") String name,
-                                @RequestParam("surname") String surname,
-                                @RequestParam("username") String username,
-                                @RequestParam("password") String password
-                                ) {
+    public String registration(XUser user) {
 
-
-        final XUser user = XUser.builder().userId("1").name(name).surname(surname).username(username).password(password).build();
-        log.info("POST -> register");
+     log.info("POST -> register "+user);
         userService.addUserToDb(user);
         return "register";
     }
