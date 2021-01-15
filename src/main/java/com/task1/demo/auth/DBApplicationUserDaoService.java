@@ -1,7 +1,7 @@
 package com.task1.demo.auth;
 
 
-import com.task1.demo.model.XUser;
+import com.task1.demo.dto.XUserDTO;
 import com.task1.demo.repo.XUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -38,7 +38,7 @@ public class DBApplicationUserDaoService implements ApplicationUserDao {
 
 
     private List<ApplicationUser> getApplicationUsers() {
-        List<String> roles = xUserRepo.findAll().stream().map(XUser::getRoles).collect(Collectors.toList());
+        List<String> roles = xUserRepo.findAll().stream().map(XUserDTO::getRoles).collect(Collectors.toList());
 
         HashSet<GrantedAuthority> authorities = new HashSet<>(roles.size());
         for (String role : roles){

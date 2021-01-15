@@ -7,7 +7,7 @@
 <body>
 <h1>Welcome</h1>
 <h1 th:text="${username}"></h1>
-<form method="Post" action="/product/add">
+<form method="Post" action="/products/add">
     <label>
         <input type="text" name="name" placeholder="name">
     </label><br>
@@ -17,7 +17,7 @@
     <label>
         <input type="text" name="price" placeholder="price (AZN)">
     </label><br>
-    <input type="submit" value="add"><a href="/product/getAll">Show My Products</a><br>
+    <input type="submit" value="add"><a href="/products/getAll">Show My Products</a><br>
 </form>
 </body>
 </html>

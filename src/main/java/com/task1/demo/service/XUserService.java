@@ -1,15 +1,13 @@
 package com.task1.demo.service;
 
 
-import com.task1.demo.model.Product;
-import com.task1.demo.model.XUser;
+import com.task1.demo.dto.XUserDTO;
 import com.task1.demo.repo.XUserRepo;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Log4j2
@@ -22,19 +20,18 @@ public class XUserService {
         this.userRepo = userRepo;
     }
 
-    public void addUserToDb(XUser user) {
+    public void addUserToDb(XUserDTO user) {
         userRepo.save(user);
     }
 
 
-
-    public XUser loggedUser() {
+    public XUserDTO loggedUser() {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = ((UserDetails) principal).getUsername();
 
 
-        final Optional<XUser> currentUser = userRepo.findByUsername(username);
+        final Optional<XUserDTO> currentUser = userRepo.findByUsername(username);
         if (currentUser.isPresent()) {
             return currentUser.get();
         } else {
@@ -42,9 +39,5 @@ public class XUserService {
         }
         return null;
 
-    }
-
-    public List<Product> getMyProducts() {
-        return loggedUser().getProducts();
     }
 }

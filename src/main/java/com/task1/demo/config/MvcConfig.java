@@ -10,8 +10,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/product/landing").setViewName("landing");
-        registry.addViewController("/product/getAll").setViewName("productTable");
+        registry.addViewController("/products/landing").setViewName("landing");
+        registry.addViewController("/products/getAll").setViewName("productTable");
     }
 
 
